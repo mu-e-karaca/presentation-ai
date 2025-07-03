@@ -25,6 +25,7 @@ An open-source inspired by gamma.app ,AI-powered presentation generator that cre
 - **Full Editability**: Modify text, fonts, and design elements as needed
 - **Presentation Mode**: Present directly from the application
 - **Auto-Save**: Everything saves automatically as you work
+- **Export Options**: Download presentations as PPTX, PDF, or send to Google Slides
 
 ## 🚀 Getting Started
 
@@ -35,6 +36,7 @@ An open-source inspired by gamma.app ,AI-powered presentation generator that cre
 - OpenAI API key (for AI generation features)
 - Together AI API key (for Image generation)
 - Google Client ID and Secret for authentication feature
+- Google Slides service account credentials for exporting to Google Slides
 
 ### Installation
 
@@ -67,10 +69,14 @@ An open-source inspired by gamma.app ,AI-powered presentation generator that cre
 
    # Next Auth Google Provider
    GOOGLE_CLIENT_ID=""
-   GOOGLE_CLIENT_SECRET=""
+  GOOGLE_CLIENT_SECRET=""
 
-   # For Uploadthing
-   UPLOADTHING_TOKEN=""
+  # Google Slides API
+  GOOGLE_SERVICE_ACCOUNT_EMAIL=""
+  GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY=""
+
+  # For Uploadthing
+  UPLOADTHING_TOKEN=""
 
    # PostgreSQL Database URL
    DATABASE_URL="postgresql://username:password@localhost:5432/presentation_ai"
@@ -111,6 +117,20 @@ An open-source inspired by gamma.app ,AI-powered presentation generator that cre
 12. Wait for the AI to create your slides in real-time
 13. Preview, edit, and refine your presentation as needed
 14. Present directly from the app or export your presentation
+
+### Exporting Presentations
+
+The presentation page includes buttons to export your slides to PowerPoint, PDF, or Google Slides.
+Make sure you have set the **GOOGLE_SERVICE_ACCOUNT_EMAIL** and **GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY** environment variables to enable the Google Slides export.
+
+Example request using `curl`:
+
+```bash
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"id":"YOUR_PRESENTATION_ID"}' \
+  http://localhost:3000/api/presentation/export/pptx
+```
 
 ### Custom Themes
 
@@ -203,8 +223,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - All our open-source [contributors](https://github.com/allweonedev/presentation-ai/graphs/contributors)
 
 ## 🔮 Future Plans
-
-- Export options (PowerPoint, PDF, Google Slides)
 - Collaborative editing
 - More AI models and image generation options
 - Template library
