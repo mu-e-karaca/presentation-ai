@@ -9,6 +9,7 @@ import { usePathname } from "next/navigation";
 import { ThemeSelector } from "../theme/ThemeSelector";
 import { ShareButton } from "./buttons/ShareButton";
 import { PresentButton } from "./buttons/PresentButton";
+import { ExportButton } from "./buttons/ExportButton";
 import { SaveStatus } from "./buttons/SaveStatus";
 import { Brain } from "@/components/ui/icons";
 import SideBarDropdown from "@/components/auth/Dropdown";
@@ -53,6 +54,9 @@ export default function PresentationHeader({ title }: PresentationHeaderProps) {
 
         {/* Theme selector - Only in presentation page, not outline */}
         {isPresentationPage && <ThemeSelector />}
+
+        {/* Export button - Only in presentation page, not outline */}
+        {isPresentationPage && !isPresenting && <ExportButton />}
 
         {/* Share button - Only in presentation page, not outline */}
         {isPresentationPage && !isPresenting && <ShareButton />}
